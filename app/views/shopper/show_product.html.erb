@@ -1,0 +1,13 @@
+<!-- app/views/shopper/show_product.html.erb -->
+
+<h2><%= @product.name %></h2>
+<p>Description: <%= @product.description %></p>
+<p>Price: <%= number_to_currency(@product.price) %></p>
+<%= image_tag(@product.image) if @product.image.present? %>
+<%= button_to 'Add to Cart', 
+lineitems_path(product_id: @product.id), class: 'add_to_cart', remote: true %>
+<div style="margin-top: 20px;"></div>
+<%= link_to "Back to shop", shopper_path %>
+<div style="margin-top: 20px;"></div>
+
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Store</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class = "<%= controller.controller_name%>">
+    <div id="banner">
+      <%=image_tag("logo.png")%>
+      <%= @page_title || "Our Products" %>
+      <% if user_signed_in? %>
+        <%= link_to('Sign out', destroy_user_session_path, method: :get) %>
+      <% else %>
+        <%= link_to('Sign in', new_user_session_path) %>
+      <% end %>
+    </div>
+    <div id="bottomdiv">
+      <div id="leftside">
+       <h1> Shopping cart </h1>
+        <div id="cart">
+           <%# <%= render(@cart) %> 
+          <%= render partial: 'carts/cart', locals: { cart: @cart } %>
+          </div>
+      </div>
+      <div id="main">
+      <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

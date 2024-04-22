@@ -1,0 +1,19 @@
+<div id="<%= dom_id product %>" class="<%= cycle('list_line_odd', 'list_line_even')%>">
+
+  <p>
+    <%= image_tag(product.image) %>
+  </p>
+
+  <p>
+    <%= product.name %>
+  </p>
+
+  <p>
+    <%= product.description %>
+  </p>
+
+  <p>
+    <%= number_to_currency(product.price) %>
+  </p>
+
+</div>

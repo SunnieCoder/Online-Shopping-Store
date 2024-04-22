@@ -1,0 +1,26 @@
+<h1>Product Catelog</h1>
+<%= form_tag(search_products_path, method: :get) do %>
+  <%= text_field_tag :query, params[:query], placeholder: 'Search by name or description' %>
+  <%= text_field_tag :min_price, params[:min_price], placeholder: 'Min price' %>
+  <%= text_field_tag :max_price, params[:max_price], placeholder: 'Max price' %>
+  <%= submit_tag 'Search' %>
+<% end %>
+<div style="margin-top: 20px;"></div>
+
+<% @allproducts.each do |product|%>
+
+<div>
+    <div>
+        <%= link_to image_tag(product.image), shopper_product_path(product) %>
+        </div>
+    <h3><%= link_to product.name, shopper_product_path(product) %></h3>
+    <p><%= product.description %></p>
+    <%= number_to_currency(product.price) %>
+    <div style="margin-top: 20px;"></div>
+
+    <%= button_to 'Add to Cart', 
+        lineitems_path(product_id: product.id), 
+        class: 'add_to_cart', remote: true %>
+    </div>
+    <div style="margin-top: 20px;"></div>
+<%end%>

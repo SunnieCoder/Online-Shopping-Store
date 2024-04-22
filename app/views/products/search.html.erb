@@ -1,0 +1,17 @@
+<!-- app/views/products/search.html.erb -->
+<%= form_tag(search_products_path, method: :get) do %>
+  <%= text_field_tag :query, params[:query], placeholder: 'Search by name or description' %>
+  <%= text_field_tag :min_price, params[:min_price], placeholder: 'Min price' %>
+  <%= text_field_tag :max_price, params[:max_price], placeholder: 'Max price' %>
+  <%= submit_tag 'Search' %>
+<% end %>
+
+<% if @results.present? %>
+  <!-- Display search results here -->
+  <% @results.each do |product| %>
+  <div>
+    <%= link_to product.name, shopper_product_path(product) %>
+  <% end %>
+<% else %>
+  <p>No results found.</p>
+<% end %>

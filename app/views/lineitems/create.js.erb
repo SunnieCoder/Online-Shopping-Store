@@ -1,0 +1,4 @@
+<%# document.getElementById('cart').innerHTML="<%= escape_javascript(render(@cart)) %>
+
+document.getElementById("cart").innerHTML = "<%= j(render partial: 'carts/cart', locals: { cart: @cart }) %>";
+
